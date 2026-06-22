@@ -1,0 +1,29 @@
+{
+  "id": "sevdesk",
+  "name": "sevDesk",
+  "baseUrl": "https://my.sevdesk.de/api/v1",
+  "auth": {
+    "scheme": "apiKeyHeader",
+    "headerName": "Authorization",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    { "method": "GET", "path": "/Contact", "summary": "List contacts (customers and suppliers)", "params": [
+      { "name": "depth", "in": "query", "required": false, "description": "1 to embed related category data" },
+      { "name": "limit", "in": "query", "required": false, "description": "Max rows" },
+      { "name": "offset", "in": "query", "required": false, "description": "Pagination offset" }
+    ] },
+    { "method": "GET", "path": "/Invoice", "summary": "List invoices", "params": [
+      { "name": "status", "in": "query", "required": false, "description": "Filter by invoice status" },
+      { "name": "limit", "in": "query", "required": false }
+    ] },
+    { "method": "GET", "path": "/Voucher", "summary": "List vouchers (expenses and receipts)" },
+    { "method": "POST", "path": "/Voucher/Factory/saveVoucher", "summary": "Create a voucher from voucher and voucherPos data" },
+    { "method": "GET", "path": "/CheckAccount", "summary": "List bank accounts" },
+    { "method": "GET", "path": "/Part", "summary": "List products and parts" }
+  ],
+  "docsUrl": "https://api.sevdesk.de/",
+  "docsDigest": "sevDesk REST API v1. Auth: send your API token in the Authorization header with NO Bearer prefix (raw token). JSON request and response bodies. Resources are PascalCase (Contact, Invoice, Voucher, CheckAccount, Part). Lists support limit and offset, plus a depth flag to embed related objects. Confirm your real base host against your account before relying on writes.",
+  "notes": "Keyless template. Add your sevDesk API token locally in Skales (Settings, API Connector) and confirm the base host. Verify the exact base URL and endpoints against your sevDesk account; this template is a starting point, not a guarantee."
+}

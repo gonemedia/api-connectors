@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-06-22",
+  "connectors": [
+    {
+      "id": "sevdesk",
+      "name": "sevDesk",
+      "file": "profiles/sevdesk.json",
+      "domain": "my.sevdesk.de"
+    }
+  ]
+}

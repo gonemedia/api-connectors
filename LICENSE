@@ -1,0 +1,10 @@
+The connector data in this repository is provided for use with Skales and
+compatible tools.
+
+Skales is licensed under the Business Source License 1.1 (BSL-1.1). The connector
+profiles here are configuration data, not Skales source code. You may use, copy,
+modify, and share these profiles for the purpose of connecting tools to APIs.
+
+No warranty: a connector describes a third-party API and may become outdated.
+Verify a connector's base URL and endpoints against the vendor's current
+documentation before relying on it, especially for write operations.
