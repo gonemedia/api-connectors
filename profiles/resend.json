@@ -1,0 +1,25 @@
+{
+  "id": "resend",
+  "name": "Resend",
+  "baseUrl": "https://api.resend.com",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    { "method": "POST", "path": "/emails", "summary": "Send an email", "params": [
+      { "name": "from", "in": "body", "required": true, "description": "Sender on a verified domain, e.g. you@yourdomain.com" },
+      { "name": "to", "in": "body", "required": true, "description": "Recipient address or array of addresses" },
+      { "name": "subject", "in": "body", "required": true, "description": "Subject line" },
+      { "name": "html", "in": "body", "required": false, "description": "HTML body (or use text)" },
+      { "name": "text", "in": "body", "required": false, "description": "Plain text body" }
+    ] },
+    { "method": "GET", "path": "/emails/{id}", "summary": "Retrieve a sent email by id" },
+    { "method": "GET", "path": "/domains", "summary": "List your sending domains" }
+  ],
+  "docsUrl": "https://resend.com/docs/api-reference",
+  "docsDigest": "Resend transactional email API. Auth: Bearer API key. Send with POST /emails: from must be an address on a domain you have verified in Resend, plus to, subject, and html or text. JSON bodies. A write, so Skales asks you to confirm before it sends.",
+  "notes": "Keyless template. Add your Resend API key locally in Skales (Settings, API Connector) and confirm the base host. Sending requires a verified domain in your Resend account."
+}

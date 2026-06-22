@@ -1,0 +1,29 @@
+{
+  "id": "openweathermap",
+  "name": "OpenWeatherMap",
+  "baseUrl": "https://api.openweathermap.org/data/2.5",
+  "auth": {
+    "scheme": "queryParam",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": "appid"
+  },
+  "endpoints": [
+    { "method": "GET", "path": "/weather", "summary": "Current weather for a place", "params": [
+      { "name": "q", "in": "query", "required": false, "description": "City name, e.g. Vienna,AT" },
+      { "name": "lat", "in": "query", "required": false, "description": "Latitude (use with lon instead of q)" },
+      { "name": "lon", "in": "query", "required": false, "description": "Longitude" },
+      { "name": "units", "in": "query", "required": false, "description": "metric for Celsius, imperial for Fahrenheit" },
+      { "name": "lang", "in": "query", "required": false, "description": "Response language, e.g. de" }
+    ] },
+    { "method": "GET", "path": "/forecast", "summary": "5 day / 3 hour forecast", "params": [
+      { "name": "q", "in": "query", "required": false, "description": "City name" },
+      { "name": "lat", "in": "query", "required": false },
+      { "name": "lon", "in": "query", "required": false },
+      { "name": "units", "in": "query", "required": false }
+    ] }
+  ],
+  "docsUrl": "https://openweathermap.org/api",
+  "docsDigest": "OpenWeatherMap data 2.5: current weather (/weather) and 5 day / 3 hour forecast (/forecast). Read only. Auth: your API key is sent as the appid query parameter. Identify the place with q=City,CC or with lat and lon. Set units=metric for Celsius. The free tier is rate limited and a new key can take a little while to activate.",
+  "notes": "Keyless template. Add your OpenWeatherMap API key locally in Skales (Settings, API Connector) and confirm the base host. Verify the base URL and endpoints against your plan; this template is a starting point, not a guarantee."
+}

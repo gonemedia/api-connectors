@@ -1,0 +1,31 @@
+{
+  "id": "github",
+  "name": "GitHub",
+  "baseUrl": "https://api.github.com",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    { "method": "GET", "path": "/user", "summary": "The authenticated user" },
+    { "method": "GET", "path": "/user/repos", "summary": "Repositories for the authenticated user", "params": [
+      { "name": "sort", "in": "query", "required": false, "description": "created, updated, pushed or full_name" },
+      { "name": "per_page", "in": "query", "required": false, "description": "Max 100" }
+    ] },
+    { "method": "GET", "path": "/repos/{owner}/{repo}/issues", "summary": "List issues on a repo (replace {owner}/{repo})", "params": [
+      { "name": "state", "in": "query", "required": false, "description": "open, closed or all" }
+    ] },
+    { "method": "POST", "path": "/repos/{owner}/{repo}/issues", "summary": "Create an issue (replace {owner}/{repo})", "params": [
+      { "name": "title", "in": "body", "required": true, "description": "Issue title" },
+      { "name": "body", "in": "body", "required": false, "description": "Issue body (Markdown)" }
+    ] },
+    { "method": "GET", "path": "/search/repositories", "summary": "Search public repositories", "params": [
+      { "name": "q", "in": "query", "required": true, "description": "Search query, e.g. skales in:name" }
+    ] }
+  ],
+  "docsUrl": "https://docs.github.com/rest",
+  "docsDigest": "GitHub REST API. Auth: Bearer personal access token (classic or fine-grained); scopes decide what you can read or write. JSON request and response bodies. In any path with {owner}/{repo} substitute the real owner and repository before calling. The X-GitHub-Api-Version header is recommended by GitHub but optional. Requests are rate limited per token.",
+  "notes": "Keyless template. Add your GitHub token locally in Skales (Settings, API Connector) and confirm the base host. A fine-grained token limited to the repos and permissions you need is safer than a classic token."
+}

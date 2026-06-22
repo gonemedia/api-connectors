@@ -1,0 +1,24 @@
+{
+  "id": "airtable",
+  "name": "Airtable",
+  "baseUrl": "https://api.airtable.com/v0",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    { "method": "GET", "path": "/meta/bases", "summary": "List the bases your token can access" },
+    { "method": "GET", "path": "/{baseId}/{tableIdOrName}", "summary": "List records in a table (replace {baseId} and {tableIdOrName})", "params": [
+      { "name": "maxRecords", "in": "query", "required": false, "description": "Max rows to return" },
+      { "name": "view", "in": "query", "required": false, "description": "Return rows from a specific view" },
+      { "name": "filterByFormula", "in": "query", "required": false, "description": "Airtable formula filter" }
+    ] },
+    { "method": "POST", "path": "/{baseId}/{tableIdOrName}", "summary": "Create records (body: { records: [ { fields: {...} } ] })" },
+    { "method": "PATCH", "path": "/{baseId}/{tableIdOrName}", "summary": "Update records (body: { records: [ { id, fields: {...} } ] })" }
+  ],
+  "docsUrl": "https://airtable.com/developers/web/api/introduction",
+  "docsDigest": "Airtable Web API (v0). Auth: Bearer personal access token; its scopes and base access decide what you can read or write. Substitute {baseId} (looks like appXXXXXXXX) and {tableIdOrName} in the path. Create and update send a JSON records array; reads support maxRecords, view and filterByFormula. Roughly 5 requests per second per base.",
+  "notes": "Keyless template. Add your Airtable personal access token locally in Skales (Settings, API Connector) and confirm the base host. Scope the token to only the bases you need."
+}

@@ -55,6 +55,17 @@ full loop).
 
 See [SCHEMA.md](./SCHEMA.md).
 
+## Disclaimer
+
+These connector profiles are community-contributed configuration data, provided
+as is and without warranty of any kind. They are not reviewed or endorsed, and a
+profile here is no guarantee that an API's base URL, endpoints, or behavior are
+correct or current. Use them at your own risk: confirm the domain, read the
+endpoints, and import only connectors from sources you trust. You are responsible
+for the keys you add, the requests you run, and any data sent or cost incurred.
+Neither Skales nor the contributors accept liability for any loss or damage arising
+from the use of a connector.
+
 ## License
 
 The connector data here is provided for use with Skales and compatible tools.

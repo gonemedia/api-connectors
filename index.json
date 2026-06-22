@@ -7,6 +7,30 @@
       "name": "sevDesk",
       "file": "profiles/sevdesk.json",
       "domain": "my.sevdesk.de"
+    },
+    {
+      "id": "openweathermap",
+      "name": "OpenWeatherMap",
+      "file": "profiles/openweathermap.json",
+      "domain": "api.openweathermap.org"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "file": "profiles/github.json",
+      "domain": "api.github.com"
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "file": "profiles/airtable.json",
+      "domain": "api.airtable.com"
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "file": "profiles/resend.json",
+      "domain": "api.resend.com"
     }
   ]
 }
