@@ -1,0 +1,75 @@
+{
+  "id": "todoist",
+  "name": "Todoist",
+  "baseUrl": "https://api.todoist.com/rest/v2",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/tasks",
+      "summary": "List active tasks",
+      "params": [
+        {
+          "name": "project_id",
+          "in": "query",
+          "required": false,
+          "description": "Only tasks in this project"
+        },
+        {
+          "name": "filter",
+          "in": "query",
+          "required": false,
+          "description": "Todoist filter query, e.g. today | overdue"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/tasks",
+      "summary": "Create a task",
+      "params": [
+        {
+          "name": "content",
+          "in": "body",
+          "required": true,
+          "description": "Task text"
+        },
+        {
+          "name": "due_string",
+          "in": "body",
+          "required": false,
+          "description": "Natural language, e.g. tomorrow at 9am"
+        },
+        {
+          "name": "project_id",
+          "in": "body",
+          "required": false,
+          "description": "Target project"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/tasks/{task_id}/close",
+      "summary": "Complete a task (replace {task_id})"
+    },
+    {
+      "method": "GET",
+      "path": "/projects",
+      "summary": "List projects"
+    },
+    {
+      "method": "GET",
+      "path": "/labels",
+      "summary": "List labels"
+    }
+  ],
+  "docsUrl": "https://developer.todoist.com/rest/v2/",
+  "docsDigest": "Todoist REST API v2. Auth: Bearer API token from Settings, Integrations, Developer. JSON bodies. due_string accepts natural language and is interpreted in the account's timezone. Closing a task returns 204 with no body, which is success, not an empty answer.",
+  "notes": "Keyless template. The token is per account and grants full access to that account's tasks."
+}

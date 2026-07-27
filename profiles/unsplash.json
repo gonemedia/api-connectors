@@ -1,0 +1,59 @@
+{
+  "id": "unsplash",
+  "name": "Unsplash",
+  "baseUrl": "https://api.unsplash.com",
+  "auth": {
+    "scheme": "apiKeyHeader",
+    "headerName": "Authorization",
+    "valuePrefix": "Client-ID ",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/search/photos",
+      "summary": "Search photos",
+      "params": [
+        {
+          "name": "query",
+          "in": "query",
+          "required": true,
+          "description": "What to search for"
+        },
+        {
+          "name": "per_page",
+          "in": "query",
+          "required": false,
+          "description": "Max 30"
+        },
+        {
+          "name": "orientation",
+          "in": "query",
+          "required": false,
+          "description": "landscape, portrait or squarish"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/photos/random",
+      "summary": "A random photo",
+      "params": [
+        {
+          "name": "query",
+          "in": "query",
+          "required": false,
+          "description": "Restrict to a subject"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/photos",
+      "summary": "The editorial feed"
+    }
+  ],
+  "docsUrl": "https://unsplash.com/documentation",
+  "docsDigest": "Unsplash API. Auth: the ACCESS KEY is sent as `Authorization: Client-ID <key>` - this profile adds the Client-ID prefix for you, so paste the bare key. Read-only with a demo app key, rate limited to 50 requests an hour until the app is approved for production. Unsplash requires attribution when you publish a photo, and the API returns the photographer's name and links for exactly that.",
+  "notes": "Keyless template. Read-only. Note the licence: attribution is a condition of use, not a suggestion."
+}

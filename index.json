@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-06-22",
+  "updated": "2026-07-28",
   "connectors": [
     {
       "id": "sevdesk",
@@ -31,6 +31,66 @@
       "name": "Resend",
       "file": "profiles/resend.json",
       "domain": "api.resend.com"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "file": "profiles/stripe.json",
+      "domain": "api.stripe.com"
+    },
+    {
+      "id": "todoist",
+      "name": "Todoist",
+      "file": "profiles/todoist.json",
+      "domain": "api.todoist.com"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "file": "profiles/notion.json",
+      "domain": "api.notion.com"
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "file": "profiles/slack.json",
+      "domain": "slack.com"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "file": "profiles/cloudflare.json",
+      "domain": "api.cloudflare.com"
+    },
+    {
+      "id": "brevo",
+      "name": "Brevo",
+      "file": "profiles/brevo.json",
+      "domain": "api.brevo.com"
+    },
+    {
+      "id": "unsplash",
+      "name": "Unsplash",
+      "file": "profiles/unsplash.json",
+      "domain": "api.unsplash.com"
+    },
+    {
+      "id": "pipedrive",
+      "name": "Pipedrive",
+      "file": "profiles/pipedrive.json",
+      "domain": "api.pipedrive.com"
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "file": "profiles/hubspot.json",
+      "domain": "api.hubapi.com"
+    },
+    {
+      "id": "plausible",
+      "name": "Plausible Analytics",
+      "file": "profiles/plausible.json",
+      "domain": "plausible.io"
     }
   ]
 }

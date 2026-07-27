@@ -1,0 +1,84 @@
+{
+  "id": "brevo",
+  "name": "Brevo",
+  "baseUrl": "https://api.brevo.com/v3",
+  "auth": {
+    "scheme": "apiKeyHeader",
+    "headerName": "api-key",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/account",
+      "summary": "Account details and remaining credits"
+    },
+    {
+      "method": "GET",
+      "path": "/contacts",
+      "summary": "List contacts",
+      "params": [
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Max 1000, default 50"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/contacts",
+      "summary": "Create a contact",
+      "params": [
+        {
+          "name": "email",
+          "in": "body",
+          "required": true,
+          "description": "Contact email"
+        },
+        {
+          "name": "attributes",
+          "in": "body",
+          "required": false,
+          "description": "Object of contact attributes, e.g. FIRSTNAME"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/smtp/email",
+      "summary": "Send a transactional email",
+      "params": [
+        {
+          "name": "sender",
+          "in": "body",
+          "required": true,
+          "description": "{ name, email } - the address must be a verified sender"
+        },
+        {
+          "name": "to",
+          "in": "body",
+          "required": true,
+          "description": "Array of { email, name }"
+        },
+        {
+          "name": "subject",
+          "in": "body",
+          "required": true,
+          "description": "Subject line"
+        },
+        {
+          "name": "htmlContent",
+          "in": "body",
+          "required": true,
+          "description": "HTML body"
+        }
+      ]
+    }
+  ],
+  "docsUrl": "https://developers.brevo.com/reference",
+  "docsDigest": "Brevo (formerly Sendinblue) API v3. Auth: the key goes in an `api-key` header, NOT as a Bearer token. JSON bodies. The sender address must be verified in the account or the send is rejected. Sending consumes credits, which /account reports.",
+  "notes": "Keyless template. /smtp/email sends real mail to real people - this is a sender, treat it like one."
+}

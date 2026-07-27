@@ -1,0 +1,66 @@
+{
+  "id": "notion",
+  "name": "Notion",
+  "baseUrl": "https://api.notion.com/v1",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": "",
+    "headerExtras": {
+      "Notion-Version": "2022-06-28"
+    }
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/users/me",
+      "summary": "The bot user this token belongs to"
+    },
+    {
+      "method": "POST",
+      "path": "/search",
+      "summary": "Search pages and databases the integration can see",
+      "params": [
+        {
+          "name": "query",
+          "in": "body",
+          "required": false,
+          "description": "Text to search for; omit to list everything shared"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pages/{page_id}",
+      "summary": "Read a page's properties (replace {page_id})"
+    },
+    {
+      "method": "GET",
+      "path": "/blocks/{block_id}/children",
+      "summary": "Read a page's content blocks (replace {block_id} with the page id)"
+    },
+    {
+      "method": "POST",
+      "path": "/databases/{database_id}/query",
+      "summary": "Query a database (replace {database_id})",
+      "params": [
+        {
+          "name": "filter",
+          "in": "body",
+          "required": false,
+          "description": "Notion filter object"
+        },
+        {
+          "name": "page_size",
+          "in": "body",
+          "required": false,
+          "description": "Max 100"
+        }
+      ]
+    }
+  ],
+  "docsUrl": "https://developers.notion.com/reference/intro",
+  "docsDigest": "Notion API. Auth: Bearer internal integration secret (ntn_...). The Notion-Version header is REQUIRED on every call and is sent automatically by this profile. An integration only sees pages that have been explicitly shared with it, so an empty search usually means nothing was shared, not that the token is wrong. Page content lives in blocks, separate from page properties.",
+  "notes": "Keyless template. Note the Notion-Version header: without it every call fails with 400, which is why it is carried here as a non-secret extra header."
+}

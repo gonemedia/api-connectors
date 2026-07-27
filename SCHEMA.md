@@ -12,7 +12,15 @@ are required; everything else is optional.
     "scheme": "apiKeyHeader",                 // bearer | apiKeyHeader | queryParam | basic
     "headerName": "Authorization",            // for apiKeyHeader: the key is sent as this header's value
     "valuePrefix": "",                        // optional prefix, e.g. "Bearer " for bearer-in-a-header
-    "queryParam": ""                          // for queryParam, e.g. ?api_key=KEY
+    "queryParam": "",                         // for queryParam, e.g. ?api_key=KEY
+
+    // Static, NON-SECRET extras sent on every call. Some APIs need a second,
+    // public value alongside the secret one: Notion requires a Notion-Version
+    // header, Adzuna wants a public app_id next to the secret app_key. These
+    // are plain text and visible; the secret auth header or param still wins on
+    // a name collision.
+    "headerExtras": { "Notion-Version": "2022-06-28" },
+    "queryExtras":  { "app_id": "12345678" }
     // The API KEY is NEVER stored in a profile. The user supplies it locally in Skales.
   },
   "endpoints": [
@@ -40,8 +48,13 @@ are required; everything else is optional.
 - `queryParam` - appends `?<queryParam>=<key>` to every request.
 - `basic` - sends `Authorization: Basic base64(<key>)`.
 
-OAuth2 is not covered by a pasted key; use connectors only for static-credential
-APIs.
+- `oauth2ClientCredentials` - the client-credentials grant. `key` is the client
+  SECRET, `clientId` the public id, and `tokenUrl` the token endpoint, which may
+  sit on a different host than `baseUrl`. Skales fetches and refreshes the token
+  itself.
+
+An OAuth2 flow that needs a browser round-trip (authorization code) is not
+covered; connectors are for credentials you can paste.
 
 ## Domain lock
 
@@ -55,3 +68,12 @@ A connector is data, never code. But it points an authenticated tool at a remote
 host, so treat importing one like running someone's config. Keep connectors
 keyless, accurate, and on-topic. Mutating endpoints (POST/PUT/PATCH/DELETE) are
 gated behind a confirmation in Skales.
+
+## Validating a profile
+
+`node validate.mjs` checks every profile against this schema and against
+`index.json`: ids and filenames agree, the index's `domain` really is the host of
+`baseUrl` (that host is what the user confirms, so the two must not disagree),
+the auth scheme is one the app implements, every endpoint has a method the app
+can send and a summary an agent can choose from - and no profile carries a key.
+Run it before opening a pull request; it is what CI would run.

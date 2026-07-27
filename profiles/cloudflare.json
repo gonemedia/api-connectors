@@ -1,0 +1,66 @@
+{
+  "id": "cloudflare",
+  "name": "Cloudflare",
+  "baseUrl": "https://api.cloudflare.com/client/v4",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/user/tokens/verify",
+      "summary": "Check the token is valid and what it can do"
+    },
+    {
+      "method": "GET",
+      "path": "/zones",
+      "summary": "List zones (domains)",
+      "params": [
+        {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "description": "Filter by domain name"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/zones/{zone_id}/dns_records",
+      "summary": "List DNS records (replace {zone_id})",
+      "params": [
+        {
+          "name": "type",
+          "in": "query",
+          "required": false,
+          "description": "A, AAAA, CNAME, TXT, ..."
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/zones/{zone_id}/purge_cache",
+      "summary": "Purge cache (replace {zone_id})",
+      "params": [
+        {
+          "name": "purge_everything",
+          "in": "body",
+          "required": false,
+          "description": "true to purge the whole zone"
+        },
+        {
+          "name": "files",
+          "in": "body",
+          "required": false,
+          "description": "Array of exact URLs to purge instead"
+        }
+      ]
+    }
+  ],
+  "docsUrl": "https://developers.cloudflare.com/api/",
+  "docsDigest": "Cloudflare API v4. Auth: Bearer API TOKEN (not the legacy Global API Key, which uses different headers and is not what this profile sends). Every response is wrapped as {\"success\": bool, \"errors\": [], \"result\": ...} - read `success`. Scope a token to the zones and permissions you need; a token verify call is the cheapest way to see what it can do.",
+  "notes": "Keyless template. purge_cache is included because it is the one write people actually want; a token limited to Zone.Cache Purge cannot do anything else."
+}

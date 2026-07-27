@@ -1,0 +1,71 @@
+{
+  "id": "hubspot",
+  "name": "HubSpot",
+  "baseUrl": "https://api.hubapi.com",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts",
+      "summary": "List contacts",
+      "params": [
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Max 100"
+        },
+        {
+          "name": "properties",
+          "in": "query",
+          "required": false,
+          "description": "Comma-separated property names to return"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts",
+      "summary": "Create a contact",
+      "params": [
+        {
+          "name": "properties",
+          "in": "body",
+          "required": true,
+          "description": "Object, e.g. { email, firstname, lastname }"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/crm/v3/objects/deals",
+      "summary": "List deals"
+    },
+    {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies",
+      "summary": "List companies"
+    },
+    {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/search",
+      "summary": "Search contacts",
+      "params": [
+        {
+          "name": "filterGroups",
+          "in": "body",
+          "required": true,
+          "description": "HubSpot filter groups array"
+        }
+      ]
+    }
+  ],
+  "docsUrl": "https://developers.hubspot.com/docs/api/overview",
+  "docsDigest": "HubSpot CRM API v3. Auth: Bearer PRIVATE APP token (pat-...). Scopes are set per private app and decide which objects are readable or writable. Only the properties you name in `properties` come back; the default set is small. Lists are cursor paginated via paging.next.after.",
+  "notes": "Keyless template. A private app token is scoped; prefer read-only scopes unless you mean to write into the CRM."
+}

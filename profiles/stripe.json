@@ -1,0 +1,76 @@
+{
+  "id": "stripe",
+  "name": "Stripe",
+  "baseUrl": "https://api.stripe.com/v1",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/balance",
+      "summary": "Current account balance"
+    },
+    {
+      "method": "GET",
+      "path": "/customers",
+      "summary": "List customers",
+      "params": [
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "1-100, default 10"
+        },
+        {
+          "name": "email",
+          "in": "query",
+          "required": false,
+          "description": "Filter by exact email"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/charges",
+      "summary": "List charges",
+      "params": [
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "1-100, default 10"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/invoices",
+      "summary": "List invoices",
+      "params": [
+        {
+          "name": "status",
+          "in": "query",
+          "required": false,
+          "description": "draft, open, paid, uncollectible or void"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/products",
+      "summary": "List products"
+    },
+    {
+      "method": "GET",
+      "path": "/payment_intents",
+      "summary": "List payment intents"
+    }
+  ],
+  "docsUrl": "https://docs.stripe.com/api",
+  "docsDigest": "Stripe REST API. Auth: Bearer secret key (sk_live_ or sk_test_ - a test key only ever sees test data, which is the safe way to try this). Request bodies are FORM-ENCODED, not JSON, and nested fields use bracket notation (metadata[order_id]=x); responses are JSON. Lists are cursor paginated with limit plus starting_after. Amounts are integers in the smallest currency unit, so 1000 is 10.00 EUR.",
+  "notes": "Read-only endpoints on purpose. A Stripe secret key can move money, so this template deliberately does not include charge or refund creation; add those yourself if you mean to."
+}

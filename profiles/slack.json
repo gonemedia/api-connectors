@@ -1,0 +1,83 @@
+{
+  "id": "slack",
+  "name": "Slack",
+  "baseUrl": "https://slack.com/api",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/auth.test",
+      "summary": "Who this token belongs to"
+    },
+    {
+      "method": "GET",
+      "path": "/conversations.list",
+      "summary": "List channels",
+      "params": [
+        {
+          "name": "types",
+          "in": "query",
+          "required": false,
+          "description": "public_channel, private_channel, im, mpim"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Max 1000"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations.history",
+      "summary": "Read a channel's messages",
+      "params": [
+        {
+          "name": "channel",
+          "in": "query",
+          "required": true,
+          "description": "Channel id, e.g. C0123456789"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Max 1000"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/chat.postMessage",
+      "summary": "Post a message",
+      "params": [
+        {
+          "name": "channel",
+          "in": "body",
+          "required": true,
+          "description": "Channel id or #name"
+        },
+        {
+          "name": "text",
+          "in": "body",
+          "required": true,
+          "description": "Message text"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users.list",
+      "summary": "List workspace members"
+    }
+  ],
+  "docsUrl": "https://api.slack.com/web",
+  "docsDigest": "Slack Web API. Auth: Bearer bot token (xoxb-...). Scopes decide what works: channels:read, channels:history, chat:write, users:read. Slack answers HTTP 200 even on failure and puts the truth in the body as {\"ok\": false, \"error\": \"...\"}, so read `ok` rather than the status code. The bot must be invited to a channel before it can read or post there.",
+  "notes": "Keyless template. chat.postMessage writes into a workspace other people read, so treat this connector as a sender."
+}

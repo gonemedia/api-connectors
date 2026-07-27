@@ -1,0 +1,75 @@
+{
+  "id": "pipedrive",
+  "name": "Pipedrive",
+  "baseUrl": "https://api.pipedrive.com/v1",
+  "auth": {
+    "scheme": "queryParam",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": "api_token"
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/users/me",
+      "summary": "The user this token belongs to"
+    },
+    {
+      "method": "GET",
+      "path": "/deals",
+      "summary": "List deals",
+      "params": [
+        {
+          "name": "status",
+          "in": "query",
+          "required": false,
+          "description": "open, won, lost, deleted or all_not_deleted"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Max 500"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/persons",
+      "summary": "List people"
+    },
+    {
+      "method": "GET",
+      "path": "/organizations",
+      "summary": "List organizations"
+    },
+    {
+      "method": "POST",
+      "path": "/deals",
+      "summary": "Create a deal",
+      "params": [
+        {
+          "name": "title",
+          "in": "body",
+          "required": true,
+          "description": "Deal title"
+        },
+        {
+          "name": "value",
+          "in": "body",
+          "required": false,
+          "description": "Deal value"
+        },
+        {
+          "name": "currency",
+          "in": "body",
+          "required": false,
+          "description": "e.g. EUR"
+        }
+      ]
+    }
+  ],
+  "docsUrl": "https://developers.pipedrive.com/docs/api/v1",
+  "docsDigest": "Pipedrive API v1. Auth: the API token goes in the `api_token` QUERY parameter, not a header. JSON bodies. Responses are wrapped as {\"success\": bool, \"data\": ...}. Some accounts sit on a company-specific host (yourcompany.pipedrive.com/api/v1); if calls 404, change the base URL to that host and confirm the new domain.",
+  "notes": "Keyless template. Because the token travels in the URL, avoid pasting request URLs from logs into anywhere public."
+}

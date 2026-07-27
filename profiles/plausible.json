@@ -1,0 +1,79 @@
+{
+  "id": "plausible",
+  "name": "Plausible Analytics",
+  "baseUrl": "https://plausible.io/api/v1",
+  "auth": {
+    "scheme": "bearer",
+    "headerName": "",
+    "valuePrefix": "",
+    "queryParam": ""
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/stats/aggregate",
+      "summary": "Totals for a period",
+      "params": [
+        {
+          "name": "site_id",
+          "in": "query",
+          "required": true,
+          "description": "Your domain, e.g. skales.app"
+        },
+        {
+          "name": "period",
+          "in": "query",
+          "required": false,
+          "description": "day, 7d, 30d, month, 6mo, 12mo or custom"
+        },
+        {
+          "name": "metrics",
+          "in": "query",
+          "required": false,
+          "description": "visitors, pageviews, bounce_rate, visit_duration"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/stats/timeseries",
+      "summary": "A metric over time",
+      "params": [
+        {
+          "name": "site_id",
+          "in": "query",
+          "required": true,
+          "description": "Your domain"
+        },
+        {
+          "name": "period",
+          "in": "query",
+          "required": false,
+          "description": "See aggregate"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/stats/breakdown",
+      "summary": "Break a metric down by a property",
+      "params": [
+        {
+          "name": "site_id",
+          "in": "query",
+          "required": true,
+          "description": "Your domain"
+        },
+        {
+          "name": "property",
+          "in": "query",
+          "required": true,
+          "description": "e.g. event:page, visit:source, visit:country"
+        }
+      ]
+    }
+  ],
+  "docsUrl": "https://plausible.io/docs/stats-api",
+  "docsDigest": "Plausible Stats API v1. Auth: Bearer API key from the account settings. Read-only. site_id is the domain exactly as it is registered in Plausible. Self-hosted installs use their own host: change the base URL to https://your-plausible-host/api/v1 and confirm the new domain.",
+  "notes": "Keyless template. Read-only by nature - the Stats API cannot change anything."
+}
